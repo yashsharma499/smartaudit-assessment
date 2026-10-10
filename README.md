@@ -131,7 +131,16 @@ Re-submitting a whole form with unchanged financials (e.g. `"85000"` vs `85000`)
 - **Scale path:** brute force is fine for thousands of rows per tenant. Beyond that, use MongoDB Atlas `$vectorSearch` (HNSW index, `filter: { tenantId }`) or pgvector, and keep the same API.
 
 ## Walkthrough video
-*(link)*. Shows a record entering as PENDING and receiving its risk score, summary, flags and vector; a notes edit fast-tracking instantly (version unchanged); an amount edit going back to PENDING and being re-scored; and the Similar panel.
+
+**[▶ Watch the 72-second walkthrough (docs/walkthrough.mp4)](docs/walkthrough.mp4)**: captioned screen recording of the running app:
+1. a new record entering as `PENDING` and receiving its risk score, summary, anomaly flags and 8-d vector;
+2. an auditor-notes edit fast-tracking with one atomic `$set` (status and version unchanged, AI not re-run);
+3. an amount edit going back to `PENDING` (version bumped) and being re-scored, with the note preserved;
+4. the Similar panel returning the top 3 by cosine similarity.
+
+| Core edit → re-scored, note preserved | Vector similarity |
+|---|---|
+| ![Re-scored after core edit](docs/rescored.png) | ![Similar panel](docs/similar.png) |
 
 ## Known limitations
 - Single demo tenant in the UI (the API is multi-tenant).
