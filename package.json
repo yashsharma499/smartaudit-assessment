@@ -1,0 +1,19 @@
+{
+  "name": "smartaudit-assessment",
+  "private": true,
+  "description": "AI-enriched continuous audit pipeline (MERN): async AI worker, smart delta evaluation, vector similarity",
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev": "concurrently -n api,web -c blue,green \"npm run dev -w server\" \"npm run dev -w client\"",
+    "seed": "npm run seed -w server",
+    "test": "npm test -w server",
+    "build": "npm run build -w client",
+    "start": "npm start -w server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
