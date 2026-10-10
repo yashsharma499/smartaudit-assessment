@@ -104,7 +104,7 @@ tr.flash td { animation: flash 1.8s ease-out; }
 .hint { margin: 6px 0 0; font-size: 11px; color: var(--muted); }
 
 .panel { width: 380px; flex-shrink: 0; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px; position: sticky; top: 16px; }
-.panel-head { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+.panel-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 8px; }
 .match { border-top: 1px solid var(--line); padding: 10px 0; font-size: 13px; line-height: 1.4; }
 .match-head { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
 .rank { font-weight: 700; color: var(--muted); }

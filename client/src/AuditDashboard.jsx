@@ -326,7 +326,7 @@ export default class AuditDashboard extends React.Component {
         {similar.error && <p className="error">{similar.error}</p>}
         {similar.results && (
           <>
-            <p className="muted small">Cosine similarity over {similar.scanned} completed entries · {similar.tookMs} ms</p>
+            <p className="muted small">Cosine similarity (−1 to 1) over {similar.scanned} completed entries · {similar.tookMs} ms</p>
             {similar.results.length === 0 && <p className="muted">No other completed entries to compare.</p>}
             {similar.results.map((r, i) => (
               <div key={r._id} className="match">
@@ -334,7 +334,7 @@ export default class AuditDashboard extends React.Component {
                   <span className="rank">#{i + 1}</span>
                   <span className="mono">{r.evidenceId}</span>
                   <StatusBadge ai={{ ...r.aiMetadata, status: 'COMPLETED' }} />
-                  <span className="sim">{Math.round(r.similarity * 100)}% match</span>
+                  <span className="sim" title="Cosine similarity (-1 to 1)">{r.similarity.toFixed(2)}</span>
                 </div>
                 <div>{r.description}</div>
                 <div className="muted small">{r.entityName} · {money(r.monetaryImpact)} · risk {r.aiMetadata.riskScore}</div>
