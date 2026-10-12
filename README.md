@@ -6,6 +6,10 @@ Prototype of an audit SaaS backend and dashboard. Evidence records are saved ins
 
 ## Quick start
 
+**Requirements:** Node.js **22 or newer** (`node -v`); the npm scripts use `--env-file-if-exists`, which older versions don't support. No MongoDB install is needed.
+
+> **First install takes a few minutes.** `npm install` downloads a MongoDB server binary once for the in-memory database (about 100 MB on macOS/Linux, about 600 MB on Windows, roughly 1–6 minutes depending on your connection). Later installs and runs reuse it. If you set `MONGO_URI` to your own MongoDB, the in-memory server is never started.
+
 ```bash
 npm install
 npm run dev        # API on :4000, dashboard on http://localhost:5173
@@ -132,7 +136,13 @@ Re-submitting a whole form with unchanged financials (e.g. `"85000"` vs `85000`)
 
 ## Walkthrough video
 
-**[▶ Watch the 72-second walkthrough (docs/walkthrough.mp4)](docs/walkthrough.mp4)**: captioned screen recording of the running app:
+**[⬇ Download the 72-second walkthrough (MP4, 3 MB)](https://github.com/yashsharma499/smartaudit-assessment/raw/main/docs/walkthrough.mp4)**
+
+**How to play it:** GitHub can't preview video files in the browser (it shows "Sorry, we can't show files that are this big"), so:
+- click the download link above, or open [`docs/walkthrough.mp4`](docs/walkthrough.mp4) and use the **Download raw file** button (↓ icon, top right), then open the file with any video player (it's a standard H.264 MP4: VLC, Windows Media Player, QuickTime, or drag it into a browser tab);
+- or, if you've cloned the repo, open `docs/walkthrough.mp4` locally.
+
+It's a captioned screen recording of the running app (no audio) showing:
 1. a new record entering as `PENDING` and receiving its risk score, summary, anomaly flags and 8-d vector;
 2. an auditor-notes edit fast-tracking with one atomic `$set` (status and version unchanged, AI not re-run);
 3. an amount edit going back to `PENDING` (version bumped) and being re-scored, with the note preserved;
